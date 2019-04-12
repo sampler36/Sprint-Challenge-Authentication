@@ -1,4 +1,5 @@
 const axios = require('axios');
+const bcrypt = require('bcrypt');
 
 const { authenticate } = require('../auth/authenticate');
 
@@ -10,10 +11,12 @@ module.exports = server => {
 
 function register(req, res) {
   // implement user registration
+
 }
 
 function login(req, res) {
   // implement user login
+  
 }
 
 function getJokes(req, res) {
