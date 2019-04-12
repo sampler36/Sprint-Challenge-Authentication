@@ -1,4 +1,5 @@
 const jwt = require('jsonwebtoken');
+const secrets = require('../config/secrets');
 
 const jwtKey =
   process.env.JWT_SECRET ||
@@ -7,7 +8,22 @@ const jwtKey =
 // quickly see what this file exports
 module.exports = {
   authenticate,
+  generateToken
 };
+//token services experiment
+function generateToken(user) {
+  const payload = {
+    subject: user.id,
+    username: user.username,
+    roles: ['Jokes'],
+  };
+
+  const options = {
+    expiresIn: '1d',
+  };
+
+  return jwt.sign(payload, secrets.jwtSecret, options);
+}
 
 // implementation details
 function authenticate(req, res, next) {
